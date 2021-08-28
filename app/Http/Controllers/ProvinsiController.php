@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
+use App\Repositories\ProvinsiInterface;
 
 class ProvinsiController extends Controller
 {
+    protected $provinsi;
+    public function __construct(ProvinsiInterface $provinsi)
+    {
+        $this->provinsi = $provinsi;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +20,9 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        $provinsi = Provinsi::all();
+        $provinsi = $this->provinsi->all();
         return view('admin.provinsi.index', compact('provinsi'));
+        // $provinsi = Provinsi::all();
     }
 
     /**
@@ -36,11 +43,17 @@ class ProvinsiController extends Controller
      */
     public function store(Request $request)
     {
-        $provinsi = new Provinsi();
-        $provinsi->kode_provinsi = $request->kode_provinsi;
-        $provinsi->nama_provinsi = $request->nama_provinsi;
-        $provinsi->save();
-        return redirect()->route('provinsi.index');
+        $request->validate([
+            'kode_provinsi' => 'required',
+            'nama_provinsi' => 'required'
+        ]);
+
+        $this->provinsi->store($request->all());
+        return redirect()->route('provinsi.index')->with('success', 'Data Provinsi Berhasil Ditambahkan');
+        // $provinsi = new Provinsi();
+        // $provinsi->kode_provinsi = $request->kode_provinsi;
+        // $provinsi->nama_provinsi = $request->nama_provinsi;
+        // $provinsi->save();
     }
 
     /**
@@ -51,7 +64,7 @@ class ProvinsiController extends Controller
      */
     public function show($id)
     {
-        $provinsi = Provinsi::findOrFail($id);
+        $provinsi = $this->provinsi->get($id);
         return view('admin.provinsi.show', compact('provinsi'));
     }
 
@@ -63,8 +76,9 @@ class ProvinsiController extends Controller
      */
     public function edit($id)
     {
-        $provinsi = Provinsi::findOrFail($id);
+        $provinsi = $this->provinsi->get($id);
         return view('admin.provinsi.edit', compact('provinsi'));
+        // $provinsi = Provinsi::findOrFail($id);
     }
 
     /**
@@ -74,13 +88,19 @@ class ProvinsiController extends Controller
      * @param  \App\Models\Provinsi  $provinsi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        $provinsi = Provinsi::findOrFail($id);
-        $provinsi->kode_provinsi = $request->kode_provinsi;
-        $provinsi->nama_provinsi = $request->nama_provinsi;
-        $provinsi->save();
-        return redirect()->route('provinsi.index');
+        $request->validate([
+            'kode_provinsi' => 'required',
+            'nama_provinsi' => 'required'
+        ]);
+
+        $this->provinsi->update($id, $request->all());
+        return redirect()->route('provinsi.index')->with('success', 'Data Provinsi Berhasil Diubah');
+        // $provinsi = Provinsi::findOrFail($id);
+        // $provinsi->kode_provinsi = $request->kode_provinsi;
+        // $provinsi->nama_provinsi = $request->nama_provinsi;
+        // $provinsi->save();
     }
 
     /**
@@ -91,8 +111,9 @@ class ProvinsiController extends Controller
      */
     public function destroy($id)
     {
-        $provinsi = Provinsi::findOrFail($id);
-        $provinsi->delete();
-        return redirect()->route('provinsi.index');
+        $this->provinsi->delete($id);
+        return redirect()->route('provinsi.index')->with('success', 'Data Provinsi Berhasil Dihapus');
+        // $provinsi = Provinsi::findOrFail($id);
+        // $provinsi->delete();
     }
 }

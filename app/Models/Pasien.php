@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pasien extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_pasien', 'nama_pasien', 'alamat', 'telepon', 'rt', 'rw', 'jenis_kelamin', 'tanggal_lahir'];
+    protected $fillable = ['id_pasien', 'id_kelurahan', 'nama_pasien', 'alamat', 'telepon', 'rt', 'rw', 'jenis_kelamin', 'tanggal_lahir'];
     public $timestamps = true;
 
     public function kelurahan()

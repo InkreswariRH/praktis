@@ -60,6 +60,22 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        @if ($errors->any())
+               <div class="alert alert-danger" role="alert">
+                  <ul>
+                        @foreach ($errors->all() as $error)
+                           <li>{{ $error }}</li>
+                        @endforeach
+                  </ul>
+               </div>
+            @endif
+            @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+              <ul>
+                {{ session('success') }}
+              </ul>
+            </div>
+            @endif
         @yield('content')
       </div><!-- /.container-fluid -->
     </section>

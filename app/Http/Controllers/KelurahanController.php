@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Kelurahan;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use App\Repositories\KelurahanInterface;
 
 class KelurahanController extends Controller
 {
+    protected $kelurahan;
+    public function __construct(KelurahanInterface $kelurahan)
+    {
+        $this->kelurahan = $kelurahan;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +21,9 @@ class KelurahanController extends Controller
      */
     public function index()
     {
-        $kelurahan = Kelurahan::with('kecamatan')->get();
+        $kelurahan = $this->kelurahan->all();
         return view('admin.kelurahan.index', compact('kelurahan'));
+        // $kelurahan = Kelurahan::with('kecamatan')->get();
     }
 
     /**
@@ -26,8 +33,9 @@ class KelurahanController extends Controller
      */
     public function create()
     {
-        $kecamatan = Kecamatan::all();
+        $kecamatan = $this->kelurahan->forCreate();
         return view('admin.kelurahan.create', compact('kecamatan'));
+        // $kecamatan = Kecamatan::all();
     }
 
     /**
@@ -38,11 +46,16 @@ class KelurahanController extends Controller
      */
     public function store(Request $request)
     {
-        $kelurahan = new kelurahan();
-        $kelurahan->id_kecamatan = $request->id_kecamatan;
-        $kelurahan->nama_kelurahan = $request->nama_kelurahan;
-        $kelurahan->save();
-        return redirect()->route('kelurahan.index')->with(['success' => 'data berhasil disimpan']);
+        $request->validate([
+            'id_kecamatan' => 'required',
+            'nama_kelurahan' => 'required'
+        ]);
+        $this->kelurahan->store($request->all());
+        return redirect()->route('kelurahan.index')->with('success', 'Data Kelurahan Berhasil Ditambah');
+        // $kelurahan = new kelurahan();
+        // $kelurahan->id_kecamatan = $request->id_kecamatan;
+        // $kelurahan->nama_kelurahan = $request->nama_kelurahan;
+        // $kelurahan->save();
     }
 
     /**
@@ -53,8 +66,9 @@ class KelurahanController extends Controller
      */
     public function show($id)
     {
-        $kelurahan = Kelurahan::findOrFail($id);
+        $kelurahan = $this->kelurahan->get($id);
         return view('admin.kelurahan.show', compact('kelurahan'));
+        // $kelurahan = Kelurahan::findOrFail($id);
     }
 
     /**
@@ -65,9 +79,11 @@ class KelurahanController extends Controller
      */
     public function edit($id)
     {
-        $kecamatan = Kecamatan::all();
-        $kelurahan = Kelurahan::findOrFail($id);
+        $kecamatan = $this->kelurahan->forCreate();
+        $kelurahan = $this->kelurahan->get($id);
         return view('admin.kelurahan.edit', compact('kelurahan', 'kecamatan'));
+        // $kecamatan = Kecamatan::all();
+        // $kelurahan = Kelurahan::findOrFail($id);
     }
 
     /**
@@ -79,11 +95,16 @@ class KelurahanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kelurahan = Kelurahan::findOrFail($id);
-        $kelurahan->id_kecamatan = $request->id_kecamatan;
-        $kelurahan->nama_kelurahan = $request->nama_kelurahan;
-        $kelurahan->save();
-        return redirect()->route('kelurahan.index')->with(['success' => 'data berhasil di edit']);
+        $request->validate([
+            'id_kecamatan' => 'required',
+            'nama_kelurahan' => 'required'
+        ]);
+        $this->kelurahan->update($id, $request->all());
+        return redirect()->route('kelurahan.index')->with('success', 'Data Kelurahan Berhasil Diubah');
+        // $kelurahan = Kelurahan::findOrFail($id);
+        // $kelurahan->id_kecamatan = $request->id_kecamatan;
+        // $kelurahan->nama_kelurahan = $request->nama_kelurahan;
+        // $kelurahan->save();
     }
 
     /**
@@ -94,8 +115,9 @@ class KelurahanController extends Controller
      */
     public function destroy($id)
     {
-        $kelurahan = Kelurahan::findOrFail($id);
-        $kelurahan->delete();
-        return redirect()->route('kelurahan.index')->with(['success' => 'data berhasil di hapus']);
+        $this->kelurahan->delete($id);
+        return redirect()->route('kelurahan.index')->with('success', 'Data Kelurahan Berhasil Dihapus');
+        // $kelurahan = Kelurahan::findOrFail($id);
+        // $kelurahan->delete();
     }
 }

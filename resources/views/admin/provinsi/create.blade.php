@@ -6,7 +6,7 @@
          <div class="card">
             <div class="card-header">
                Tambah Data Provinsi
-            </div>
+            </div>      
             <div class="card-body">
                <form action="{{ route('provinsi.store') }}" method="post">
                @csrf
