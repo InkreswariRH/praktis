@@ -14,8 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Dashboard') }}
-                    Halo, Selamat Datang
+                    Halo, Selamat Datang {{ Auth::user()->name }}
                 </div>
             </div>
         </div>

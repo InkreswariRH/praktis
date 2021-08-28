@@ -27,6 +27,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/home', function () {
+    return view('halo');
+});
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {

@@ -29,7 +29,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('provinsi.index') }}" class="nav-link active">
+                    <a href="{{ route('provinsi.index') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Data Provinsi</p>
                     </a>
@@ -61,7 +61,7 @@
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     Data Pasien
-                    <span class="right badge badge-danger">New</span>
+                    
                   </p>
                 </a>
               </li>
