@@ -64,7 +64,9 @@
         </div>
       </form>
 
-      
+      <p class="mb-1">
+        <a href="{{url('register')}}" class="text-center">Register</a>
+      </p>
       <!-- /.social-auth-links -->
 
       
