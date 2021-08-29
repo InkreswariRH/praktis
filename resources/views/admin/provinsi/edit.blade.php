@@ -12,12 +12,12 @@
                @csrf @method('put')
                <div class="form-group">
                   <label for="">Kode Provinsi</label>
-                  <input type="text" name="kode_provinsi" class="form-control" value="{{ $provinsi->kode_provinsi }}" required>
+                  <input type="text" name="kode_provinsi" class="form-control" value="{{ $provinsi->kode_provinsi }}" required autocomplete="off">
                </div>
 
                <div class="form-group">
                   <label for="">Nama Provinsi</label>
-                  <input type="text" name="nama_provinsi" class="form-control" value="{{ $provinsi->nama_provinsi }}" required>
+                  <input type="text" name="nama_provinsi" class="form-control" value="{{ $provinsi->nama_provinsi }}" required autocomplete="off">
                </div>
 
                <div class="form-group">

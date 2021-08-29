@@ -28,23 +28,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Nama Pasien</label>
-                                    <input type="text" name="nama_pasien" class="form-control" value="{{$pasien->nama_pasien}}" required>
+                                    <input type="text" name="nama_pasien" class="form-control" value="{{$pasien->nama_pasien}}" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Alamat</label>
-                                    <input type="text" name="alamat" class="form-control" value="{{$pasien->alamat}}" required>
+                                    <input type="text" name="alamat" class="form-control" value="{{$pasien->alamat}}" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Telepon</label>
-                                    <input type="text" name="telepon" class="form-control" value="{{$pasien->telepon}}" required>
+                                    <input type="text" name="telepon" class="form-control" value="{{$pasien->telepon}}" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label for="">RT</label>
-                                    <input type="text" name="rt" class="form-control" value="{{$pasien->rt}}" required>
+                                    <input type="text" name="rt" class="form-control" value="{{$pasien->rt}}" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label for="">RW</label>
-                                    <input type="text" name="rw" class="form-control" value="{{$pasien->rw}}" required>
+                                    <input type="text" name="rw" class="form-control" value="{{$pasien->rw}}" required autocomplete="off">
                                 </div>
 
                                 <div class="form-group">

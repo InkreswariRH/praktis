@@ -12,12 +12,12 @@
                @csrf
                <div class="form-group">
                   <label for="">Kode Provinsi</label>
-                  <input type="text" name="kode_provinsi" class="form-control" id="" required>
+                  <input type="text" name="kode_provinsi" class="form-control" id="" required autocomplete="off">
                </div>
 
                <div class="form-group">
                   <label for="">Nama Provinsi</label>
-                  <input type="text" name="nama_provinsi" class="form-control" id="" required>
+                  <input type="text" name="nama_provinsi" class="form-control" id="" required autocomplete="off">
                </div>
 
                <div class="form-group">

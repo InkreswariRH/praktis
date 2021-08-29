@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Nama kelurahan</label>
-                            <input type="text" name="nama_kelurahan" class="form-control" required>
+                            <input type="text" name="nama_kelurahan" class="form-control" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Simpan</button>

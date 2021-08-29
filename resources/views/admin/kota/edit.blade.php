@@ -22,12 +22,12 @@
 
                   <div class="form-group">
                      <label for="">Kode Kota</label>
-                     <input type="text" name="kode_kota" value="{{ $kota->kode_kota }}" class="form-control" required>
+                     <input type="text" name="kode_kota" value="{{ $kota->kode_kota }}" class="form-control" required autocomplete="off">
                   </div>
 
                   <div class="form-group">
                      <label for="">Nama Kota</label>
-                     <input type="text" name="nama_kota" value="{{ $kota->nama_kota }}" class="form-control" required>
+                     <input type="text" name="nama_kota" value="{{ $kota->nama_kota }}" class="form-control" required autocomplete="off">
                   </div>
 
                   <div class="form-group">
