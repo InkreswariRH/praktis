@@ -12,7 +12,7 @@ class Helper
    {
       $data = $model::whereMonth('created_at', $bulan)->orderBy('id', 'DESC')->first();
       if (!$data) {
-         $log_length = $panjang_id;
+         $log_length = $panjang_id - 1;
          $last_number = 1;
       } else {
          // ngambil data angka urut, mulai ngambilnya setelah prefix
